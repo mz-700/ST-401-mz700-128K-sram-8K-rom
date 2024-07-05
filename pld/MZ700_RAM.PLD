@@ -1,0 +1,84 @@
+/* MZ700 RAM */
+
+Name     MZ700_RAM ;
+PartNo   00 ;
+Date     05/17/2024 ;
+Revision 01 ;
+Designer T.Schembri ;
+Company  TBC ;
+Assembly None ;
+Location Chicago,IL;
+Device   f1502plcc44;
+
+/* Inputs */
+
+PIN 4		= A0;
+PIN 5		= A1;
+PIN 6		= A2;
+PIN 8		= A8;
+PIN 9		= A9;
+PIN 12		= A10;
+PIN 14		= A11;
+PIN 16		= A12;
+PIN 17		= A13;
+PIN 18		= A14;
+PIN 19		= A15;
+PIN 20		= D0;
+PIN 21		= D1;
+PIN 24		= D2;
+PIN 26		= D3;
+PIN 27		= !MREQ;
+PIN 28		= !REG_SEL;
+PIN 1		= !RESET;
+
+/* Outputs */
+
+PIN 29		= RA0;
+PIN 31		= RA1;
+PIN 33		= !MMU_WR;
+PIN 39		= !ROM_CS;
+PIN 40		= !RAM_CS;
+
+/* EQUATIONS */
+
+/* mmu register write */
+
+MMU_WR = REG_SEL & !A2;
+
+/* memory page enable flip flops */
+
+FF_REG = REG_SEL & !A0 & !A1 & A2;
+
+NODE EN_E100_FF;
+EN_E100_FF.D	= D0;
+EN_E100_FF.AR	= RESET;
+EN_E100_FF.CK = FF_REG;
+
+NODE EN_E800_FF;
+EN_E800_FF.D	= D1;
+EN_E800_FF.AR	= RESET;
+EN_E800_FF.CK = FF_REG;
+
+NODE EN_F000_FF;
+EN_F000_FF.D	= D2;
+EN_F000_FF.AR	= RESET;
+EN_F000_FF.CK = FF_REG;
+
+NODE EN_F800_FF;
+EN_F800_FF.D	= D3;
+EN_F800_FF.AR	= RESET;
+EN_F800_FF.CK = FF_REG;
+
+/* page select */
+
+E100_PAGE_CS = MREQ & A15 & A14 & A13 & !A12 & !A11 & ( A10 # A9 # A8 );
+E800_PAGE_CS = MREQ & A15 & A14 & A13 & !A12 & A11;
+F000_PAGE_CS = MREQ & A15 & A14 & A13 & A12 & !A11;
+F800_PAGE_CS = MREQ & A15 & A14 & A13 & A12 & A11;
+
+RAM_CS = ( E100_PAGE_CS & EN_E100_FF ) # ( E800_PAGE_CS & EN_E800_FF ) # ( F000_PAGE_CS & EN_F000_FF ) # ( F800_PAGE_CS & EN_F800_FF );
+ROM_CS = ( E100_PAGE_CS & !EN_E100_FF ) # ( E800_PAGE_CS & !EN_E800_FF ) # ( F000_PAGE_CS & !EN_F000_FF ) # ( F800_PAGE_CS & !EN_F800_FF );
+
+RA0 = F800_PAGE_CS # E800_PAGE_CS;
+RA1 = F800_PAGE_CS # F000_PAGE_CS;
+
