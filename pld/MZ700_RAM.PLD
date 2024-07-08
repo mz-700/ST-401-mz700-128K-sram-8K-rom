@@ -15,6 +15,11 @@ Device   f1502plcc44;
 PIN 4		= A0;
 PIN 5		= A1;
 PIN 6		= A2;
+PIN 34		= A3;
+PIN 36		= A4;
+PIN 37		= A5;
+PIN 43		= A6;
+PIN 2		= A7;
 PIN 8		= A8;
 PIN 9		= A9;
 PIN 12		= A10;
@@ -30,6 +35,11 @@ PIN 26		= D3;
 PIN 27		= !MREQ;
 PIN 28		= !REG_SEL;
 PIN 1		= !RESET;
+PIN 41		= !IORQ;
+PIN 44		= !M1;
+PIN 25		= !WR;
+
+FIELD IO_ADDR = [A0..A7];
 
 /* Outputs */
 
@@ -38,8 +48,28 @@ PIN 31		= RA1;
 PIN 33		= !MMU_WR;
 PIN 39		= !ROM_CS;
 PIN 40		= !RAM_CS;
+PIN	11		= BOARD_ENABLED_LED;
 
 /* EQUATIONS */
+
+IOWR = !M1 & IORQ & WR;
+
+/* DRAM flip flop. 1 = $D000->$FFFF is DRAM (selected with OUT ($E1),A) */
+/*                 0 = $D000->$FFFF is VRAM/MMIO (selected with OUT ($E3),A or OUT ($E4),A or RESET) */
+
+NODE DRAM_FF;
+DRAM_FF.D = IO_ADDR:E1;
+DRAM_FF.AR = RESET # ( IOWR & ( IO_ADDR:E3 # IO_ADDR:E4 ) );
+DRAM_FF.CK = IOWR;
+
+/* Lock flip flop. 1 = $D000->$FFFF not accessible (locked) (selected with OUT ($E5),A) */
+/*                 0 = $D000->$FFFF is unlocked, go back to the previous state (selected with OUT ($E6),A) */
+
+NODE LOCK_FF;
+LOCK_FF.D = IO_ADDR:E5;
+LOCK_FF.AR = RESET # ( IOWR & IO_ADDR:E6 );
+LOCK_FF.CK = IOWR;
+
 
 /* mmu register write */
 
@@ -76,9 +106,12 @@ E800_PAGE_CS = MREQ & A15 & A14 & A13 & !A12 & A11;
 F000_PAGE_CS = MREQ & A15 & A14 & A13 & A12 & !A11;
 F800_PAGE_CS = MREQ & A15 & A14 & A13 & A12 & A11;
 
-RAM_CS = ( E100_PAGE_CS & EN_E100_FF ) # ( E800_PAGE_CS & EN_E800_FF ) # ( F000_PAGE_CS & EN_F000_FF ) # ( F800_PAGE_CS & EN_F800_FF );
-ROM_CS = ( E100_PAGE_CS & !EN_E100_FF ) # ( E800_PAGE_CS & !EN_E800_FF ) # ( F000_PAGE_CS & !EN_F000_FF ) # ( F800_PAGE_CS & !EN_F800_FF );
+RAM_CS = !DRAM_FF & !LOCK_FF & (( E100_PAGE_CS & EN_E100_FF ) # ( E800_PAGE_CS & EN_E800_FF ) # ( F000_PAGE_CS & EN_F000_FF ) # ( F800_PAGE_CS & EN_F800_FF ));
+ROM_CS = !DRAM_FF & !LOCK_FF & (( E100_PAGE_CS & !EN_E100_FF ) # ( E800_PAGE_CS & !EN_E800_FF ) # ( F000_PAGE_CS & !EN_F000_FF ) # ( F800_PAGE_CS & !EN_F800_FF ));
 
 RA0 = F800_PAGE_CS # E800_PAGE_CS;
 RA1 = F800_PAGE_CS # F000_PAGE_CS;
 
+/* LED */
+
+BOARD_ENABLED_LED = !DRAM_FF & !LOCK_FF;
