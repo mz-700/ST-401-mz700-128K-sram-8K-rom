@@ -1,14 +1,14 @@
-/* MZ700 RAM */
+/* MZ700 ROM - SRAM */
 
-Name     MZ700_RAM ;
+Name     MZ700_ROM_SRAM ;
 PartNo   00 ;
 Date     05/17/2024 ;
-Revision 01 ;
+Revision 03 ;
 Designer T.Schembri ;
 Company  TBC ;
 Assembly None ;
 Location Chicago,IL;
-Device   f1502plcc44;
+Device   f1502ispplcc44;
 
 /* Inputs */
 
@@ -40,6 +40,8 @@ PIN 44		= !M1;
 PIN 25		= !WR;
 
 FIELD IO_ADDR = [A0..A7];
+FIELD MEM_ADDR = [A0..A15];
+
 
 /* Outputs */
 
@@ -48,7 +50,7 @@ PIN 31		= RA1;
 PIN 33		= !MMU_WR;
 PIN 39		= !ROM_CS;
 PIN 40		= !RAM_CS;
-PIN	11		= BOARD_ENABLED_LED;
+PIN 11		= BOARD_ENABLED_LED;
 
 /* EQUATIONS */
 
@@ -58,17 +60,24 @@ IOWR = !M1 & IORQ & WR;
 /*                 0 = $D000->$FFFF is VRAM/MMIO (selected with OUT ($E3),A or OUT ($E4),A or RESET) */
 
 NODE DRAM_FF;
-DRAM_FF.D = IO_ADDR:E1;
-DRAM_FF.AR = RESET # ( IOWR & ( IO_ADDR:E3 # IO_ADDR:E4 ) );
-DRAM_FF.CK = IOWR;
+DRAM_FF.AR = IOWR & ( IO_ADDR:E3 # IO_ADDR:E4 );
+DRAM_FF.AP = IOWR & IO_ADDR:E1;
+DRAM_FF.D = 'b'0;
+DRAM_FF.CK = RESET;
 
 /* Lock flip flop. 1 = $D000->$FFFF not accessible (locked) (selected with OUT ($E5),A) */
 /*                 0 = $D000->$FFFF is unlocked, go back to the previous state (selected with OUT ($E6),A) */
 
 NODE LOCK_FF;
-LOCK_FF.D = IO_ADDR:E5;
-LOCK_FF.AR = RESET # ( IOWR & IO_ADDR:E6 );
-LOCK_FF.CK = IOWR;
+LOCK_FF.AR = IOWR & ( IO_ADDR:E6 # IO_ADDR:E4 );
+LOCK_FF.AP = IOWR & IO_ADDR:E5;
+LOCK_FF.D = 'b'0;
+LOCK_FF.CK = RESET;
+
+/* board enabled: true if !DRAM_FF and !LOCK_FF */
+
+
+BOARD_ENABLED = !DRAM_FF & !LOCK_FF;
 
 
 /* mmu register write */
@@ -106,12 +115,12 @@ E800_PAGE_CS = MREQ & A15 & A14 & A13 & !A12 & A11;
 F000_PAGE_CS = MREQ & A15 & A14 & A13 & A12 & !A11;
 F800_PAGE_CS = MREQ & A15 & A14 & A13 & A12 & A11;
 
-RAM_CS = !DRAM_FF & !LOCK_FF & (( E100_PAGE_CS & EN_E100_FF ) # ( E800_PAGE_CS & EN_E800_FF ) # ( F000_PAGE_CS & EN_F000_FF ) # ( F800_PAGE_CS & EN_F800_FF ));
-ROM_CS = !DRAM_FF & !LOCK_FF & (( E100_PAGE_CS & !EN_E100_FF ) # ( E800_PAGE_CS & !EN_E800_FF ) # ( F000_PAGE_CS & !EN_F000_FF ) # ( F800_PAGE_CS & !EN_F800_FF ));
+RAM_CS = BOARD_ENABLED & (( E100_PAGE_CS & EN_E100_FF ) # ( E800_PAGE_CS & EN_E800_FF ) # ( F000_PAGE_CS & EN_F000_FF ) # ( F800_PAGE_CS & EN_F800_FF ));
+ROM_CS = BOARD_ENABLED & (( E100_PAGE_CS & !EN_E100_FF ) # ( E800_PAGE_CS & !EN_E800_FF ) # ( F000_PAGE_CS & !EN_F000_FF ) # ( F800_PAGE_CS & !EN_F800_FF ));
 
 RA0 = F800_PAGE_CS # E800_PAGE_CS;
 RA1 = F800_PAGE_CS # F000_PAGE_CS;
 
 /* LED */
 
-BOARD_ENABLED_LED = !DRAM_FF & !LOCK_FF;
+BOARD_ENABLED_LED = BOARD_ENABLED;
