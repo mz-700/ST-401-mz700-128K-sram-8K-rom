@@ -1,6 +1,6 @@
-/* MZ700 ROM - SRAM */
+/* MZ700 SRAM - ROM */
 
-Name     MZ700_ROM_SRAM ;
+Name     MZ700_SRAM_ROM ;
 PartNo   00 ;
 Date     05/17/2024 ;
 Revision 03 ;
@@ -39,6 +39,7 @@ PIN 41		= !IORQ;
 PIN 44		= !M1;
 PIN 25		= !WR;
 
+FIELD REG_NUMBER = [A0..A2];
 FIELD IO_ADDR = [A0..A7];
 FIELD MEM_ADDR = [A0..A15];
 
@@ -74,19 +75,24 @@ LOCK_FF.AP = IOWR & IO_ADDR:E5;
 LOCK_FF.D = 'b'0;
 LOCK_FF.CK = RESET;
 
-/* board enabled: true if !DRAM_FF and !LOCK_FF */
+/* board enabled: true if !DRAM_FF and !LOCK_FF and DISABLE_FF */
+
+NODE DISABLE_FF;
+DISABLE_FF.AR = RESET;
+DISABLE_FF.D  = D0;
+DISABLE_FF.CK = REG_SEL & REG_NUMBER:5;
 
 
-BOARD_ENABLED = !DRAM_FF & !LOCK_FF;
+BOARD_ENABLED = !DRAM_FF & !LOCK_FF & !DISABLE_FF;
 
 
 /* mmu register write */
 
-MMU_WR = REG_SEL & !A2;
+MMU_WR = REG_SEL & REG_NUMBER:[0..3];
 
-/* memory page enable flip flops */
+/* memory page type flip flops (0 : ROM, 1: RAM) */
 
-FF_REG = REG_SEL & !A0 & !A1 & A2;
+FF_REG = REG_SEL & REG_NUMBER:4;
 
 NODE EN_E100_FF;
 EN_E100_FF.D	= D0;
@@ -110,10 +116,10 @@ EN_F800_FF.CK = FF_REG;
 
 /* page select */
 
-E100_PAGE_CS = MREQ & A15 & A14 & A13 & !A12 & !A11 & ( A10 # A9 # A8 );
-E800_PAGE_CS = MREQ & A15 & A14 & A13 & !A12 & A11;
-F000_PAGE_CS = MREQ & A15 & A14 & A13 & A12 & !A11;
-F800_PAGE_CS = MREQ & A15 & A14 & A13 & A12 & A11;
+E100_PAGE_CS = MREQ & MEM_ADDR:[E100..E7FF];
+E800_PAGE_CS = MREQ & MEM_ADDR:[E800..EFFF];
+F000_PAGE_CS = MREQ & MEM_ADDR:[F000..F7FF];
+F800_PAGE_CS = MREQ & MEM_ADDR:[F800..FFFF];
 
 RAM_CS = BOARD_ENABLED & (( E100_PAGE_CS & EN_E100_FF ) # ( E800_PAGE_CS & EN_E800_FF ) # ( F000_PAGE_CS & EN_F000_FF ) # ( F800_PAGE_CS & EN_F800_FF ));
 ROM_CS = BOARD_ENABLED & (( E100_PAGE_CS & !EN_E100_FF ) # ( E800_PAGE_CS & !EN_E800_FF ) # ( F000_PAGE_CS & !EN_F000_FF ) # ( F800_PAGE_CS & !EN_F800_FF ));
