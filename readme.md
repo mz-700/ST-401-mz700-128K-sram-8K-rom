@@ -97,7 +97,7 @@ Here is the BOM:
 
 |Ref|Name|Description|Seller|Seller Reference|Comments|
 |---|---|---|---|--|--|
-|U1|ATF1502AS|CPLD|[Mouser](https://www.mouser.com/ProductDetail/556-AF1502AS10JU44)|556-AF1502AS10JU44 |556-AF1502AS10JU44  |
+|U1|ATF1502AS|CPLD|[Mouser](https://www.mouser.com/ProductDetail/556-AF1502AS10JU44)|556-AF1502AS10JU44 |  |
 |U1|Socket|PLCC44 Socket|[Mouser](https://www.mouser.com/ProductDetail/737-PLCC-44-AT)|737-PLCC-44-AT|
 |U2|74HCT688|8 bit comparator|[Mouser](https://www.mouser.com/ProductDetail/595-CD74HCT688EE4)|595-CD74HCT688EE4 |
 |U3-U4|74LS670|4x4 Register|[Mouser](https://www.mouser.com/ProductDetail/595-SN74LS670N)|595-SN74LS670N |LS because the HCT is really expensive|
