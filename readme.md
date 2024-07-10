@@ -6,7 +6,7 @@ There are 3 versions of this board, each functionning similarly, with the lastes
 
 The 3 branches are:
 
-- `main`: This branch. A 8KB ROM + 128KB SRAM board.
+- `128K`: This branch. A 8KB ROM + 128KB SRAM board.
 - [`512K`](https://github.com/mz-700/mz700-sram-rom/tree/512K): Same board with 512KB SRAM
 - [`dual512K`](https://github.com/mz-700/mz700-sram-rom/tree/dual-512K): Same board with 512KB Flash ROM+512 KB SRAM.
 
