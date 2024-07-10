@@ -100,14 +100,14 @@ Here is the BOM:
 |U1|ATF1502AS|CPLD|[Mouser](https://www.mouser.com/ProductDetail/556-AF1502AS10JU44)|556-AF1502AS10JU44 |556-AF1502AS10JU44  |
 |U1|Socket|PLCC44 Socket|[Mouser](https://www.mouser.com/ProductDetail/737-PLCC-44-AT)|737-PLCC-44-AT|
 |U2|74HCT688|8 bit comparator|[Mouser](https://www.mouser.com/ProductDetail/595-CD74HCT688EE4)|595-CD74HCT688EE4 |
-|U3-U4|74LS670|4x4 Register|[Mouser](https://www.mouser.com/ProductDetail/595-SN74LS670N)|595-SN74LS670N |LS because the HCT are really expensive|
+|U3-U4|74LS670|4x4 Register|[Mouser](https://www.mouser.com/ProductDetail/595-SN74LS670N)|595-SN74LS670N |LS because the HCT is really expensive|
 |U5|AS6C1008|128KB SRAM|[Mouser](https://www.mouser.com/ProductDetail/913-AS6C1008-55PCN)|913-AS6C1008-55PCN |
 |U6|28C64|8KB EEPROM|[Mouser](https://www.mouser.com/ProductDetail/556-AT28C64B15PU)|556-AT28C64B15PU|
-|C1-C9|Capacitor|0.1uF 50V +/-10% Decoupling capacitor|[Digikey](https://www.digikey.com/en/products/detail/kemet/C318C104K5R5TATR/13905607)|C318C104K5R5TATR|
-|R1|Resistor|300 ohm|[Mouser](https://www.mouser.com/ProductDetail/594-MBE04140C3300FC1)|594-MBE04140C3300FC1 |cheap on ebay or aliexpress
-|D1|LED|5mm LED|[Mouser](https://www.mouser.com/ProductDetail/%20593-LTH5MM12VFR4100)|593-LTH5MM12VFR4100 |cheap on ebay or aliexpress
+|C1-C9|Capacitor|0.1uF 50V +/-10% 5mm Decoupling capacitor|[Mouser](https://www.mouser.com/ProductDetail/594-K104K15X7RF53H5G)|594-K104K15X7RF53H5G |
+|R1|Resistor|300 ohm|[Mouser](https://www.mouser.com/ProductDetail/594-MBE04140C3300FC1)|594-MBE04140C3300FC1 |
+|D1|LED|5mm LED|[Mouser](https://www.mouser.com/ProductDetail/%20593-LTH5MM12VFR4100)|593-LTH5MM12VFR4100 |
 |J1|connector|Shrouded 2x5 male connector|[Mouser](https://www.mouser.com/ProductDetail/200-TST10501GD)|200-TST10501GD |
-|J2|connector|1x34 angled 2.54mm pin header|||cheap on Ebay or AliExpress
+|J2|connector|1x34 angled 2.54mm pin header|[Mouser](https://www.mouser.com/ProductDetail/649-78938-434HLF)|649-78938-434HLF |
 |RN1|Resistor|5x10K Resistor Network|[Mouser](https://www.mouser.com/ProductDetail/652-4606X-1LF-10K)|652-4606X-1LF-10K 
 |SW1|Switch|5x DIP Switch|[Mouser](https://www.mouser.com/ProductDetail/774-1945MST)|774-1945MST
 |||CPDL Programmer|[Mouser](https://www.mouser.com/ProductDetail/556-ATDH1150USB)|556-ATDH1150USB|
