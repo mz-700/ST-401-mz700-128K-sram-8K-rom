@@ -3,14 +3,7 @@
 This is a paged SRAM/ROM board designed for the Sharp MZ-700, and it requires the [Sharp MZ-700 Backplane expansion board](https://github.com/mz-700/mz700-backplane).
 
 There are 3 versions of this board, each functionning similarly, with the lastest version offering additional features detailed in the branch`readme.md` file. 
-
-The 3 branches are:
-
-- `128K`: This branch. A 8KB ROM + 128KB SRAM board.
-- [`512K`](https://github.com/mz-700/mz700-sram-rom/tree/512K): Same board with 512KB SRAM
-- [`dual512K`](https://github.com/mz-700/mz700-sram-rom/tree/dual-512K): Same board with 512KB Flash ROM+512 KB SRAM.
-
-The dual512K board is a bit different. There is a specific `readme.md` in the branch page that describes the differences. 
+This one is the 128K version: 8KB ROM + 128KB SRAM board.
 
 #### How does it work? ####
 
