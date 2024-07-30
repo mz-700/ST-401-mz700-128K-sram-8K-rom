@@ -8,6 +8,8 @@
 		(title "MZ-700 SRAM 128K - ROM")
 		(date "2024-05-19")
 		(rev "1.0")
+		(company "TBC")
+		(comment 1 "ST-401")
 	)
 	(lib_symbols
 		(symbol "Connector_Generic:Conn_02x05_Odd_Even"
