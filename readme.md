@@ -1,6 +1,6 @@
 ### Sharp MZ-700 SRAM/ROM Board ###
 
-This is a paged SRAM/ROM board designed for the Sharp MZ-700, and it requires the [Sharp MZ-700 Backplane expansion board](https://github.com/mz-700/mz700-backplane).
+This is a paged SRAM/ROM board designed for the Sharp MZ-700, and it requires the [Sharp MZ-700 Backplane](https://github.com/mz-700/mz700-backplane) and the [MZ-700 expansion connector board]().
 
 There are 3 versions of this board, each functionning similarly, with the lastest version offering additional features detailed in the branch`readme.md` file. 
 This one is the 128K version: 8KB ROM + 128KB SRAM board.
