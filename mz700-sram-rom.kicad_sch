@@ -1785,6 +1785,102 @@
 				)
 			)
 		)
+		(symbol "power:PWR_FLAG"
+			(power)
+			(pin_numbers hide)
+			(pin_names
+				(offset 0) hide)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "#FLG"
+				(at 0 1.905 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Value" "PWR_FLAG"
+				(at 0 3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Special symbol for telling ERC where power comes from"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "flag power"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "PWR_FLAG_0_0"
+				(pin power_out line
+					(at 0 0 90)
+					(length 0)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(symbol "PWR_FLAG_0_1"
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 1.27) (xy -1.016 1.905) (xy 0 2.54) (xy 1.016 1.905) (xy 0 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+		)
 		(symbol "sharpox:28C64"
 			(pin_names
 				(offset 1.016)
@@ -4644,33 +4740,31 @@
 				)
 			)
 		)
-		(symbol "sharpox:MZ700Bus-2014-single-row"
+		(symbol "sharpox:MZ700Bus-2014_single-row"
 			(pin_names
 				(offset 1.6)
 			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
-			(property "Reference" "J1"
-				(at 8.382 2.4821 0)
+			(property "Reference" "J"
+				(at 2.54 46.99 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify left)
 				)
 			)
-			(property "Value" "MZ700Bus-2014-single-row"
-				(at -5.715 -44.45 0)
+			(property "Value" "MZ700Bus-2014"
+				(at 2.032 -45.466 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify left)
 				)
 			)
 			(property "Footprint" "Connector_PinSocket_2.54mm:PinSocket_1x34_P2.54mm_Vertical"
-				(at 3.81 -46.99 0)
+				(at 3.81 -45.72 0)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -4687,8 +4781,8 @@
 					(hide yes)
 				)
 			)
-			(property "Description" "Sharp MZ700 1x34 single row connector (RC2014 compatible)"
-				(at 0 0 0)
+			(property "Description" "1x34 connector"
+				(at 2.54 -47.752 0)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -4714,7 +4808,7 @@
 					(hide yes)
 				)
 			)
-			(symbol "MZ700Bus-2014-single-row_1_1"
+			(symbol "MZ700Bus-2014_single-row_1_1"
 				(rectangle
 					(start -1.27 -40.513)
 					(end 0 -40.767)
@@ -5091,7 +5185,7 @@
 				)
 				(rectangle
 					(start -1.27 44.45)
-					(end 7.62 -41.91)
+					(end 7.62 -43.18)
 					(stroke
 						(width 0.254)
 						(type default)
@@ -5100,7 +5194,7 @@
 						(type background)
 					)
 				)
-				(pin output line
+				(pin passive line
 					(at -5.08 43.18 0)
 					(length 3.81)
 					(name "A15"
@@ -5118,7 +5212,7 @@
 						)
 					)
 				)
-				(pin output line
+				(pin passive line
 					(at -5.08 20.32 0)
 					(length 3.81)
 					(name "A6"
@@ -5136,7 +5230,7 @@
 						)
 					)
 				)
-				(pin output line
+				(pin passive line
 					(at -5.08 17.78 0)
 					(length 3.81)
 					(name "A5"
@@ -5154,7 +5248,7 @@
 						)
 					)
 				)
-				(pin output line
+				(pin passive line
 					(at -5.08 15.24 0)
 					(length 3.81)
 					(name "A4"
@@ -5172,7 +5266,7 @@
 						)
 					)
 				)
-				(pin output line
+				(pin passive line
 					(at -5.08 12.7 0)
 					(length 3.81)
 					(name "A3"
@@ -5190,7 +5284,7 @@
 						)
 					)
 				)
-				(pin output line
+				(pin passive line
 					(at -5.08 10.16 0)
 					(length 3.81)
 					(name "A2"
@@ -5208,7 +5302,7 @@
 						)
 					)
 				)
-				(pin output line
+				(pin passive line
 					(at -5.08 7.62 0)
 					(length 3.81)
 					(name "A1"
@@ -5226,7 +5320,7 @@
 						)
 					)
 				)
-				(pin output line
+				(pin passive line
 					(at -5.08 5.08 0)
 					(length 3.81)
 					(name "A0"
@@ -5244,7 +5338,7 @@
 						)
 					)
 				)
-				(pin power_out line
+				(pin power_in line
 					(at -5.08 2.54 0)
 					(length 3.81)
 					(name "GND"
@@ -5262,7 +5356,7 @@
 						)
 					)
 				)
-				(pin power_out line
+				(pin power_in line
 					(at -5.08 0 0)
 					(length 3.81)
 					(name "5V"
@@ -5280,7 +5374,7 @@
 						)
 					)
 				)
-				(pin output inverted
+				(pin passive inverted
 					(at -5.08 -2.54 0)
 					(length 3.81)
 					(name "~{M1}"
@@ -5298,7 +5392,7 @@
 						)
 					)
 				)
-				(pin output line
+				(pin passive line
 					(at -5.08 40.64 0)
 					(length 3.81)
 					(name "A14"
@@ -5316,7 +5410,7 @@
 						)
 					)
 				)
-				(pin output inverted
+				(pin passive inverted
 					(at -5.08 -5.08 0)
 					(length 3.81)
 					(name "~{RESET}"
@@ -5334,7 +5428,7 @@
 						)
 					)
 				)
-				(pin output clock
+				(pin passive clock
 					(at -5.08 -7.62 0)
 					(length 3.81)
 					(name "CLK"
@@ -5352,7 +5446,7 @@
 						)
 					)
 				)
-				(pin output inverted
+				(pin passive inverted
 					(at -5.08 -10.16 0)
 					(length 3.81)
 					(name "~{INT}"
@@ -5370,7 +5464,7 @@
 						)
 					)
 				)
-				(pin output inverted
+				(pin passive inverted
 					(at -5.08 -12.7 0)
 					(length 3.81)
 					(name "~{MREQ}"
@@ -5388,7 +5482,7 @@
 						)
 					)
 				)
-				(pin output inverted
+				(pin passive inverted
 					(at -5.08 -15.24 0)
 					(length 3.81)
 					(name "~{WR}"
@@ -5406,7 +5500,7 @@
 						)
 					)
 				)
-				(pin output inverted
+				(pin passive inverted
 					(at -5.08 -17.78 0)
 					(length 3.81)
 					(name "~{RD}"
@@ -5424,7 +5518,7 @@
 						)
 					)
 				)
-				(pin output inverted
+				(pin passive inverted
 					(at -5.08 -20.32 0)
 					(length 3.81)
 					(name "~{IORQ}"
@@ -5496,7 +5590,7 @@
 						)
 					)
 				)
-				(pin output line
+				(pin passive line
 					(at -5.08 38.1 0)
 					(length 3.81)
 					(name "A13"
@@ -5604,7 +5698,7 @@
 						)
 					)
 				)
-				(pin output line
+				(pin passive line
 					(at -5.08 35.56 0)
 					(length 3.81)
 					(name "A12"
@@ -5622,7 +5716,7 @@
 						)
 					)
 				)
-				(pin output line
+				(pin passive line
 					(at -5.08 33.02 0)
 					(length 3.81)
 					(name "A11"
@@ -5640,7 +5734,7 @@
 						)
 					)
 				)
-				(pin output line
+				(pin passive line
 					(at -5.08 30.48 0)
 					(length 3.81)
 					(name "A10"
@@ -5658,7 +5752,7 @@
 						)
 					)
 				)
-				(pin output line
+				(pin passive line
 					(at -5.08 27.94 0)
 					(length 3.81)
 					(name "A9"
@@ -5676,7 +5770,7 @@
 						)
 					)
 				)
-				(pin output line
+				(pin passive line
 					(at -5.08 25.4 0)
 					(length 3.81)
 					(name "A8"
@@ -5694,7 +5788,7 @@
 						)
 					)
 				)
-				(pin output line
+				(pin passive line
 					(at -5.08 22.86 0)
 					(length 3.81)
 					(name "A7"
@@ -5776,6 +5870,12 @@
 		(uuid "48db80ab-80b8-41a7-b657-bc1ef27d397b")
 	)
 	(junction
+		(at 302.26 69.85)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "61b52a26-6e6d-4ea9-94ca-9218746f8251")
+	)
+	(junction
 		(at 204.47 71.12)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -5810,6 +5910,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "7f6cce7c-6263-47e8-8a80-55c66f6c88ac")
+	)
+	(junction
+		(at 302.26 81.28)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "80efdfb9-90d0-4521-b28e-31d30c39630d")
 	)
 	(junction
 		(at 72.39 19.05)
@@ -9940,7 +10046,7 @@
 				)
 			)
 		)
-		(property "Footprint" "LED_THT:LED_D5.0mm"
+		(property "Footprint" "LED_THT:LED_D3.0mm"
 			(at 102.87 66.04 90)
 			(effects
 				(font
@@ -11672,7 +11778,7 @@
 		)
 	)
 	(symbol
-		(lib_id "sharpox:MZ700Bus-2014-single-row")
+		(lib_id "sharpox:MZ700Bus-2014_single-row")
 		(at 328.93 72.39 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -11699,7 +11805,7 @@
 			)
 		)
 		(property "Footprint" "Connector_PinSocket_2.54mm:PinSocket_1x34_P2.54mm_Vertical"
-			(at 332.74 119.38 0)
+			(at 332.74 118.11 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -11716,8 +11822,8 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Sharp MZ700 1x34 single row connector (RC2014 compatible)"
-			(at 328.93 72.39 0)
+		(property "Description" "1x34 connector"
+			(at 331.47 120.142 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12468,6 +12574,72 @@
 			(project "mz700-sram-rom"
 				(path "/d264b6a0-4c73-4c34-b78d-e7c4e07912b7"
 					(reference "C9")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:PWR_FLAG")
+		(at 302.26 69.85 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "b02f124c-ef8f-45a0-b311-34b4fe2c3ebe")
+		(property "Reference" "#FLG01"
+			(at 302.26 67.945 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "PWR_FLAG"
+			(at 302.26 65.7169 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 302.26 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 302.26 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Special symbol for telling ERC where power comes from"
+			(at 302.26 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "325a58e7-bf99-4354-b7a8-c28876ab149d")
+		)
+		(instances
+			(project ""
+				(path "/d264b6a0-4c73-4c34-b78d-e7c4e07912b7"
+					(reference "#FLG01")
 					(unit 1)
 				)
 			)
@@ -13368,6 +13540,72 @@
 			(project "mz700-sram-rom"
 				(path "/d264b6a0-4c73-4c34-b78d-e7c4e07912b7"
 					(reference "#PWR023")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:PWR_FLAG")
+		(at 302.26 81.28 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "eb050550-123e-4748-9bbd-635c4bff38c6")
+		(property "Reference" "#FLG02"
+			(at 302.26 83.185 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "PWR_FLAG"
+			(at 302.26 85.4131 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 302.26 81.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 302.26 81.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Special symbol for telling ERC where power comes from"
+			(at 302.26 81.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "6350caab-0af1-4978-a1b0-918f55927abd")
+		)
+		(instances
+			(project ""
+				(path "/d264b6a0-4c73-4c34-b78d-e7c4e07912b7"
+					(reference "#FLG02")
 					(unit 1)
 				)
 			)
